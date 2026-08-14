@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/FastWorkshops.Api/FastWorkshops.Api.csproj" />
+    <Project Path="src/FastWorkshops.Application/FastWorkshops.Application.csproj" />
+    <Project Path="src/FastWorkshops.Domain/FastWorkshops.Domain.csproj" />
+    <Project Path="src/FastWorkshops.Infrastructure/FastWorkshops.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/FastWorkshops.UnitTests/FastWorkshops.UnitTests.csproj" />
+  </Folder>
+</Solution>
