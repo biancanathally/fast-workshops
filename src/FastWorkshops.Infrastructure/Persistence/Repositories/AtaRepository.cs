@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FastWorkshops.Infrastructure.Persistence.Repositories;
 
-public class AtaRepositoryImpl(AppDbContext context) : IAtaRepository
+public class AtaRepository(AppDbContext context) : IAtaRepository
 {
     public async Task<Ata?> ObterPorIdAsync(int id, CancellationToken ct = default) =>
         await context.Atas

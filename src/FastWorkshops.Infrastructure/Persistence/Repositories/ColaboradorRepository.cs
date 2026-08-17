@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FastWorkshops.Infrastructure.Persistence.Repositories;
 
-public class ColaboradorRepositoryImpl(AppDbContext context) : IColaboradorRepository
+public class ColaboradorRepository(AppDbContext context) : IColaboradorRepository
 {
     public async Task<Colaborador?> ObterPorIdAsync(int id, CancellationToken ct = default) =>
         await context.Colaboradores

@@ -1,10 +1,11 @@
 using FastWorkshops.Domain.Entities;
 using FastWorkshops.Domain.Repositories;
+using FastWorkshops.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace FastWorkshops.Infrastructure.Persistence.Repositories;
 
-public class WorkshopRepositoryImpl(AppDbContext context) : IWorkshopRepository
+public class WorkshopRepository(AppDbContext context) : IWorkshopRepository
 {
     public async Task<Workshop?> ObterPorIdAsync(int id, CancellationToken ct = default) =>
         await context.Workshops

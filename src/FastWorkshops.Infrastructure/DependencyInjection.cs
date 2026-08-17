@@ -17,10 +17,10 @@ public static class DependencyInjection
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("SqlServer")));
 
-        services.AddScoped<IUnitOfWork, UnitOfWorkRepositoryImpl>();
-        services.AddScoped<IWorkshopRepository, WorkshopRepositoryImpl>();
-        services.AddScoped<IColaboradorRepository, ColaboradorRepositoryImpl>();
-        services.AddScoped<IAtaRepository, AtaRepositoryImpl>();
+        services.AddScoped<IUnitOfWork, UnitOfWorkRepository>();
+        services.AddScoped<IWorkshopRepository, WorkshopRepository>();
+        services.AddScoped<IColaboradorRepository, ColaboradorRepository>();
+        services.AddScoped<IAtaRepository, AtaRepository>();
 
         return services;
     }

@@ -2,11 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FastWorkshops.Application\FastWorkshops.Application.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="..\FastWorkshops.Domain\Repositories\Impl\**\*.cs"
-             Link="Persistence/Repositories/%(RecursiveDir)%(Filename)%(Extension)" />
+    <ProjectReference Include="..\FastWorkshops.Domain\FastWorkshops.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

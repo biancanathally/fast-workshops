@@ -1,11 +1,12 @@
 using FastWorkshops.Domain.Abstractions;
 using FastWorkshops.Domain.Exceptions;
+using FastWorkshops.Infrastructure.Persistence;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace FastWorkshops.Infrastructure.Persistence.Repositories;
 
-public class UnitOfWorkRepositoryImpl(AppDbContext context) : IUnitOfWork
+public class UnitOfWorkRepository(AppDbContext context) : IUnitOfWork
 {
     private const int ViolacaoIndiceUnico = 2601;
     private const int ViolacaoChaveUnica  = 2627;
