@@ -483,3 +483,4 @@ $RECYCLE.BIN/
 
 # DOTNET Core
 .dotnet/
+frontend/dist/
