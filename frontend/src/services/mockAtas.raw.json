@@ -1,0 +1,162 @@
+[
+    {
+        "id": 4,
+        "workshop": {
+            "id": 4,
+            "nome": "Observabilidade e logs estruturados",
+            "dataRealizacao": "2025-12-11T16:00:00",
+            "descricao": "M\u00e9tricas, tracing e diagn\u00f3stico em produ\u00e7\u00e3o."
+        },
+        "totalColaboradores": 4,
+        "colaboradores": [
+            {
+                "id": 6,
+                "nome": "Lucas Lorena"
+            },
+            {
+                "id": 7,
+                "nome": "Maria Eduarda Mergulh\u00e3o"
+            },
+            {
+                "id": 8,
+                "nome": "Mayra Schneider"
+            },
+            {
+                "id": 9,
+                "nome": "J\u00falio C\u00e9sar"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "workshop": {
+            "id": 3,
+            "nome": "Introdu\u00e7\u00e3o a LLMs",
+            "dataRealizacao": "2025-09-11T16:00:00",
+            "descricao": "Fundamentos de modelos de linguagem e casos de uso."
+        },
+        "totalColaboradores": 10,
+        "colaboradores": [
+            {
+                "id": 1,
+                "nome": "Amanda Nunes"
+            },
+            {
+                "id": 2,
+                "nome": "Bianca Lima"
+            },
+            {
+                "id": 3,
+                "nome": "Bruno Martins"
+            },
+            {
+                "id": 4,
+                "nome": "Erick Almeida"
+            },
+            {
+                "id": 5,
+                "nome": "Iasmyn Mendes"
+            },
+            {
+                "id": 6,
+                "nome": "Lucas Lorena"
+            },
+            {
+                "id": 7,
+                "nome": "Maria Eduarda Mergulh\u00e3o"
+            },
+            {
+                "id": 8,
+                "nome": "Mayra Schneider"
+            },
+            {
+                "id": 9,
+                "nome": "J\u00falio C\u00e9sar"
+            },
+            {
+                "id": 10,
+                "nome": "Priscila R\u00e9gis"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "workshop": {
+            "id": 2,
+            "nome": "Testes automatizados em .NET",
+            "dataRealizacao": "2025-06-12T16:00:00",
+            "descricao": "Pir\u00e2mide de testes, xUnit e testes de integra\u00e7\u00e3o."
+        },
+        "totalColaboradores": 6,
+        "colaboradores": [
+            {
+                "id": 3,
+                "nome": "Bruno Martins"
+            },
+            {
+                "id": 4,
+                "nome": "Erick Almeida"
+            },
+            {
+                "id": 5,
+                "nome": "Iasmyn Mendes"
+            },
+            {
+                "id": 6,
+                "nome": "Lucas Lorena"
+            },
+            {
+                "id": 7,
+                "nome": "Maria Eduarda Mergulh\u00e3o"
+            },
+            {
+                "id": 8,
+                "nome": "Mayra Schneider"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "workshop": {
+            "id": 1,
+            "nome": "Clean Architecture na pr\u00e1tica",
+            "dataRealizacao": "2025-03-13T16:00:00",
+            "descricao": "Camadas, depend\u00eancias e limites de responsabilidade."
+        },
+        "totalColaboradores": 8,
+        "colaboradores": [
+            {
+                "id": 1,
+                "nome": "Amanda Nunes"
+            },
+            {
+                "id": 2,
+                "nome": "Bianca Lima"
+            },
+            {
+                "id": 3,
+                "nome": "Bruno Martins"
+            },
+            {
+                "id": 4,
+                "nome": "Erick Almeida"
+            },
+            {
+                "id": 5,
+                "nome": "Iasmyn Mendes"
+            },
+            {
+                "id": 6,
+                "nome": "Lucas Lorena"
+            },
+            {
+                "id": 7,
+                "nome": "Maria Eduarda Mergulh\u00e3o"
+            },
+            {
+                "id": 8,
+                "nome": "Mayra Schneider"
+            }
+        ]
+    }
+]
