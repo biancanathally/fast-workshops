@@ -1,6 +1,4 @@
-using FastWorkshops.Domain.Entities;
-
-namespace FastWorkshops.Domain.Repositories;
+namespace FastWorkshops.Domain.Abstractions;
 
 public interface IUnitOfWork
 {

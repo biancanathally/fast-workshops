@@ -39,6 +39,4 @@ public class WorkshopRepositoryImpl(AppDbContext context) : IWorkshopRepository
 
     public async Task AdicionarAsync(Workshop workshop, CancellationToken ct = default) =>
         await context.Workshops.AddAsync(workshop, ct);
-
-    public Task SalvarAsync(CancellationToken ct = default) => context.SaveChangesAsync(ct);
 }

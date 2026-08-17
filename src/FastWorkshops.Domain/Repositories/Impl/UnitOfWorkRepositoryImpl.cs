@@ -1,5 +1,4 @@
-using FastWorkshops.Domain.Entities;
-using FastWorkshops.Domain.Repositories;
+using FastWorkshops.Domain.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
 namespace FastWorkshops.Infrastructure.Persistence.Repositories;

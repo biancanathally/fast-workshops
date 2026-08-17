@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using FastWorkshops.Domain.Repositories;
+using FastWorkshops.Domain.Abstractions;
 using FastWorkshops.Infrastructure.Persistence.Repositories;
 
 namespace FastWorkshops.Infrastructure;

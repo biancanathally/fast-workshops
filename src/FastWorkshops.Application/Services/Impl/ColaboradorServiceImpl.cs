@@ -2,6 +2,7 @@ using System.Globalization;
 using FastWorkshops.Application.DTOs;
 using FastWorkshops.Domain.Entities;
 using FastWorkshops.Domain.Repositories;
+using FastWorkshops.Domain.Abstractions;
 using FastWorkshops.Domain.Exceptions;
 
 namespace FastWorkshops.Application.Services;

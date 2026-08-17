@@ -11,5 +11,4 @@ public interface IAtaRepository
         string? workshopNome, DateOnly? data, string? colaboradorNome,
         CancellationToken ct = default);
     Task AdicionarAsync(Ata ata, CancellationToken ct = default);
-    Task SalvarAsync(CancellationToken ct = default);
 }

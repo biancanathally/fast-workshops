@@ -54,6 +54,4 @@ public class AtaRepositoryImpl(AppDbContext context) : IAtaRepository
 
     public async Task AdicionarAsync(Ata ata, CancellationToken ct = default) =>
         await context.Atas.AddAsync(ata, ct);
-
-    public Task SalvarAsync(CancellationToken ct = default) => context.SaveChangesAsync(ct);
 }
