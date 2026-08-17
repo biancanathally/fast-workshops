@@ -8,7 +8,6 @@ public class ColaboradorRepositoryImpl(AppDbContext context) : IColaboradorRepos
 {
     public async Task<Colaborador?> ObterPorIdAsync(int id, CancellationToken ct = default) =>
         await context.Colaboradores
-            .Include(c => c.Atas)
             .FirstOrDefaultAsync(c => c.Id == id, ct);
 
     public async Task<List<Colaborador>> ObterPorIdsAsync(IEnumerable<int> ids, CancellationToken ct = default) =>
@@ -18,7 +17,7 @@ public class ColaboradorRepositoryImpl(AppDbContext context) : IColaboradorRepos
 
     public async Task<List<Colaborador>> ListarComAtasAsync(CancellationToken ct = default) =>
         await context.Colaboradores
-            .Include(c => c.Atas)
+            .Include(c => c.Atas).ThenInclude(a => a.Workshop)
             .AsNoTracking()
             .AsSplitQuery()
             .ToListAsync(ct);

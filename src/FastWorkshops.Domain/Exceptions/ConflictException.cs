@@ -1,3 +1,3 @@
 namespace FastWorkshops.Domain.Exceptions;
 
-public class ConflitoException(string mensagem) : Exception(mensagem);
+public class ConflictException(string mensagem) : Exception(mensagem);
