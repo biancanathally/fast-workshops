@@ -17,7 +17,7 @@ public static class DependencyInjection
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("SqlServer")));
 
-        services.AddScoped<IUnitOfWork, UnitOfWorkRepository>();
+        services.AddScoped<IUnitOfWork, EfUnitOfWork>();
         services.AddScoped<IWorkshopRepository, WorkshopRepository>();
         services.AddScoped<IColaboradorRepository, ColaboradorRepository>();
         services.AddScoped<IAtaRepository, AtaRepository>();

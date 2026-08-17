@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FastWorkshops.Infrastructure.Persistence.Repositories;
 
-public class UnitOfWorkRepository(AppDbContext context) : IUnitOfWork
+public class EfUnitOfWork(AppDbContext context) : IUnitOfWork
 {
     private const int ViolacaoIndiceUnico = 2601;
     private const int ViolacaoChaveUnica  = 2627;
