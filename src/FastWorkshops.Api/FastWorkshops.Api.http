@@ -1,6 +1,53 @@
-@FastWorkshops.Api_HostAddress = http://localhost:5045
+@host = http://localhost:5045
 
-GET {{FastWorkshops.Api_HostAddress}}/weatherforecast/
-Accept: application/json
+### 1. Cadastrar workshop
+POST {{host}}/api/workshops
+Content-Type: application/json
 
-###
+{ "nome": "Desafio Fast", "dataRealizacao": "2026-03-12T16:00:00", "descricao": "Workshop de teste" }
+
+### 2. Cadastrar colaborador
+POST {{host}}/api/colaboradores
+Content-Type: application/json
+
+{ "nome": "Zuleica Andrade" }
+
+### 3. Criar ata
+POST {{host}}/api/atas
+Content-Type: application/json
+
+{ "workshopId": 5, "colaboradorIds": [1, 2, 3] }
+
+### 4. Adicionar colaborador (rode DUAS vezes)
+PUT {{host}}/api/atas/1/colaboradores/11
+
+### 5. Remover colaborador
+DELETE {{host}}/api/atas/1/colaboradores/11
+
+### 6. Colaboradores em ordem alfabética
+GET {{host}}/api/colaboradores
+
+### 7. Filtros de atas
+GET {{host}}/api/atas
+GET {{host}}/api/atas?workshopNome=testes
+GET {{host}}/api/atas?data=2025-06-12
+GET {{host}}/api/atas?workshopNome=clean&data=2025-03-13
+GET {{host}}/api/atas?colaboradorNome=alvaro
+
+### 8. Caso de erro — formato de data inválido (espera 400)
+GET {{host}}/api/atas?data=12/06/2025
+
+### 9. Caso de erro — ata em workshop que já tem ata (espera 409)
+POST {{host}}/api/atas
+Content-Type: application/json
+
+{ "workshopId": 1, "colaboradorIds": [] }
+
+### 10. Caso de erro — colaborador inexistente (espera 404 citando o id)
+POST {{host}}/api/atas
+Content-Type: application/json
+
+{ "workshopId": 2, "colaboradorIds": [1, 999] }
+
+### 11. Caso de erro — ata inexistente (espera 404)
+PUT {{host}}/api/atas/999/colaboradores/1
