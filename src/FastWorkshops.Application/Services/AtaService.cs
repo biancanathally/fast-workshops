@@ -6,7 +6,7 @@ using FastWorkshops.Domain.Abstractions;
 
 namespace FastWorkshops.Application.Services;
 
-public class AtaServiceImpl(
+public class AtaService(
     IAtaRepository atas,
     IWorkshopRepository workshops,
     IColaboradorRepository colaboradores,

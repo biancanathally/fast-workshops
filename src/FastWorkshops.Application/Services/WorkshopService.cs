@@ -6,7 +6,7 @@ using FastWorkshops.Domain.Abstractions;
 
 namespace FastWorkshops.Application.Services;
 
-public class WorkshopServiceImpl(IWorkshopRepository workshops, IUnitOfWork uow) : IWorkshopService
+public class WorkshopService(IWorkshopRepository workshops, IUnitOfWork uow) : IWorkshopService
 {
     public async Task<WorkshopDto> CriarAsync(
         CriarWorkshopRequest request, CancellationToken ct = default)

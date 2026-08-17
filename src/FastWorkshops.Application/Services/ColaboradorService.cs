@@ -7,7 +7,7 @@ using FastWorkshops.Domain.Exceptions;
 
 namespace FastWorkshops.Application.Services;
 
-public class ColaboradorServiceImpl(IColaboradorRepository colaboradores, IUnitOfWork uow)
+public class ColaboradorService(IColaboradorRepository colaboradores, IUnitOfWork uow)
     : IColaboradorService
 {
     // Comparação linguística pt-BR: garante Álvaro < Ana < Bruno.
