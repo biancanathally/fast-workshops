@@ -2,7 +2,7 @@ using FastWorkshops.Application.DTOs;
 
 namespace FastWorkshops.Application.Services;
 
-public interface AtaService
+public interface IAtaService
 {
     Task<AtaDto> CriarAsync(CriarAtaRequest request, CancellationToken ct = default);
     Task<AtaDto> ObterPorIdAsync(int id, CancellationToken ct = default);

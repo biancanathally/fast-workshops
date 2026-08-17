@@ -10,7 +10,7 @@ public class AtaServiceImpl(
     IAtaRepository atas,
     IWorkshopRepository workshops,
     IColaboradorRepository colaboradores,
-    IUnitOfWork uow) : AtaService
+    IUnitOfWork uow) : IAtaService
 {
     public async Task<AtaDto> CriarAsync(CriarAtaRequest request, CancellationToken ct = default)
     {

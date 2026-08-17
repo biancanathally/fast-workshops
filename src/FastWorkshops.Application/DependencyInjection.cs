@@ -9,7 +9,7 @@ public static class DependencyInjection
     {
         services.AddScoped<WorkshopService, WorkshopServiceImpl>();
         services.AddScoped<ColaboradorService, ColaboradorServiceImpl>();
-        services.AddScoped<AtaService, AtaServiceImpl>();
+        services.AddScoped<IAtaService, AtaServiceImpl>();
 
         return services;
     }

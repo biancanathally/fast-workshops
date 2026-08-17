@@ -8,7 +8,7 @@ namespace FastWorkshops.Api.Controllers;
 [ApiController]
 [Route("api/atas")]
 [Produces("application/json")]
-public class AtasController(AtaService service) : ControllerBase
+public class AtasController(IAtaService service) : ControllerBase
 {
     /// <summary>Lista atas de presença com filtros opcionais e combináveis.</summary>
     /// <param name="workshopNome">Busca parcial, sem diferenciar maiúsculas.</param>
