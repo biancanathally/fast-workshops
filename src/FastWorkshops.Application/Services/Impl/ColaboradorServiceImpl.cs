@@ -8,7 +8,7 @@ using FastWorkshops.Domain.Exceptions;
 namespace FastWorkshops.Application.Services;
 
 public class ColaboradorServiceImpl(IColaboradorRepository colaboradores, IUnitOfWork uow)
-    : ColaboradorService
+    : IColaboradorService
 {
     // Comparação linguística pt-BR: garante Álvaro < Ana < Bruno.
     // Ordenar no SQL dependeria do collation do banco; aqui o resultado é determinístico.

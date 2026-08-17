@@ -2,7 +2,7 @@ using FastWorkshops.Application.DTOs;
 
 namespace FastWorkshops.Application.Services;
 
-public interface ColaboradorService
+public interface IColaboradorService
 {
     Task<ColaboradorDto> CriarAsync(CriarColaboradorRequest request, CancellationToken ct = default);
     Task<IReadOnlyList<ColaboradorComWorkshopsDto>> ListarAsync(CancellationToken ct = default);

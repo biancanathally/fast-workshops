@@ -2,7 +2,7 @@ using FastWorkshops.Application.DTOs;
 
 namespace FastWorkshops.Application.Services;
 
-public interface WorkshopService
+public interface IWorkshopService
 {
     Task<WorkshopDto> CriarAsync(CriarWorkshopRequest request, CancellationToken ct = default);
     Task<WorkshopDto> ObterPorIdAsync(int id, CancellationToken ct = default);

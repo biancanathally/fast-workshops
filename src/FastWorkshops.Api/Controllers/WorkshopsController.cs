@@ -8,7 +8,7 @@ namespace FastWorkshops.Api.Controllers;
 [ApiController]
 [Route("api/workshops")]
 [Produces("application/json")]
-public class WorkshopsController(WorkshopService service) : ControllerBase
+public class WorkshopsController(IWorkshopService service) : ControllerBase
 {
     /// <summary>Cadastra um novo workshop.</summary>
     [HttpPost]

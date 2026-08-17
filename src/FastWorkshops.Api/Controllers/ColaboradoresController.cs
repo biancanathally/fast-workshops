@@ -7,7 +7,7 @@ namespace FastWorkshops.Api.Controllers;
 [ApiController]
 [Route("api/colaboradores")]
 [Produces("application/json")]
-public class ColaboradoresController(ColaboradorService service) : ControllerBase
+public class ColaboradoresController(IColaboradorService service) : ControllerBase
 {
     /// <summary>
     /// Lista colaboradores em ordem alfabética (pt-BR) com os workshops que participaram.
