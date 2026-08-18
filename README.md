@@ -32,6 +32,7 @@ Desenvolvido como desafio técnico para a vaga de Pesquisa em Engenharia de Soft
 - Entity Framework Core 10 (SQL Server)
 - Swashbuckle (Swagger/OpenAPI)
 - Arquitetura em camadas: Domain / Application / Infrastructure / Api
+- Autenticação JWT (Bearer)
 
 **Frontend**
 - React 19 + Vite
@@ -114,6 +115,18 @@ VITE_USE_MOCK=true
 ## Endpoints da API
 
 Documentação interativa completa no Swagger (`http://localhost:5045`). Resumo:
+
+### Autenticação
+
+| Método | Rota | Descrição |
+|---|---|---|
+| `POST` | `/api/auth/login` | Autentica e retorna um token JWT |
+
+Os endpoints de **escrita** (`POST`, `PUT`, `DELETE`) exigem autenticação — requisições sem token retornam `401`. Os endpoints de **leitura** (`GET`) são públicos, permitindo o uso do frontend sem login.
+
+**Credenciais de teste:** usuário `admin`, senha `Fast@2026`.
+
+Para autenticar no Swagger: chame `POST /api/auth/login`, copie o `token` da resposta e cole no botão **Authorize** (sem o prefixo "Bearer").
 
 ### Workshops
 
@@ -213,6 +226,7 @@ frontend/src/
 | Sem React Router | O enunciado descreve uma tela única (lista + detalhe em modal); adicionar roteamento seria complexidade sem propósito |
 | `AbortController` em toda chamada de API do frontend | Contraparte, no cliente, dos `CancellationToken` propagados em toda a cadeia do backend — cancela requisições obsoletas quando o usuário digita rapidamente nos filtros |
 | `IUnitOfWork` em `Domain.Abstractions`, repositórios em `Domain.Repositories` | Separação proposital: Unit of Work é um contrato de transação, não um contrato de acesso a dados — apesar de usado ao lado dos repositórios em todo serviço, representa uma responsabilidade diferente |
+| `[Authorize]` apenas nos endpoints de escrita | Leituras públicas permitem avaliar o frontend sem login; o modelo do PDF não define entidade de usuário, então as credenciais ficam em configuração — criar tabela de usuários extrapolaria o modelo de dados do enunciado |
 
 ---
 
@@ -259,7 +273,7 @@ Roteiro de verificação manual de todos os endpoints e casos de erro, incluindo
 
 ## Uso de IA no desenvolvimento
 
-Claude (Anthropic) foi utilizado como parceiro de raciocínio ao longo do desenvolvimento — para revisão de arquitetura, identificação de bugs antes da execução, e validação de decisões técnicas. Registro detalhado de prompts, decisões aceitas e **decisões rejeitadas** em [`docs/USO-DE-IA.md`](docs/USO-DE-IA.md). Além disso, o Gemini foi utilizado para entender erros.
+Claude (Anthropic) foi utilizado como parceiro de raciocínio ao longo do desenvolvimento — para revisão de arquitetura, identificação de bugs antes da execução, e validação de decisões técnicas. Registro detalhado de prompts, decisões aceitas e **decisões rejeitadas** em [`docs/USO-DE-IA.md`](docs/USO-DE-IA.md). Além disso, o Gemini foi utilizado pontualmente como apoio na interpretação de mensagens de erro; os links de ambas as conversas estão no documento acima.
 
 Dois exemplos de decisões revisadas e corrigidas ao longo do processo, detalhados no documento acima:
 - As implementações de repositório inicialmente ficaram fisicamente dentro do projeto `Domain`, compiladas para `Infrastructure` via `<Compile Include Link>` no `.csproj` — uma solução que compilava, mas mascarava uma violação da separação de camadas. Foi identificada em revisão e corrigida, movendo os arquivos fisicamente para `Infrastructure`.
