@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\FastWorkshops.Application\FastWorkshops.Application.csproj" />
     <ProjectReference Include="..\FastWorkshops.Domain\FastWorkshops.Domain.csproj" />
   </ItemGroup>
 
