@@ -15,7 +15,7 @@ Desenvolvido como desafio técnico para a vaga de Pesquisa em Engenharia de Soft
 - [Arquitetura](#arquitetura)
 - [Decisões técnicas](#decisões-técnicas)
 - [Ambiguidades do enunciado e como foram resolvidas](#ambiguidades-do-enunciado-e-como-foram-resolvidas)
-<!-- - [Testes](#testes) -->
+- [Testes](#testes)
 - [Uso de IA no desenvolvimento](#uso-de-ia-no-desenvolvimento)
 
 ---
@@ -207,6 +207,7 @@ frontend/src/
 | Sem biblioteca de estado global (Redux, Zustand etc.) | Estado local (`useState`/`useEffect`) é suficiente para o escopo — uma tela, poucos componentes |
 | Sem React Router | O enunciado descreve uma tela única (lista + detalhe em modal); adicionar roteamento seria complexidade sem propósito |
 | `AbortController` em toda chamada de API do frontend | Contraparte, no cliente, dos `CancellationToken` propagados em toda a cadeia do backend — cancela requisições obsoletas quando o usuário digita rapidamente nos filtros |
+| `IUnitOfWork` em `Domain.Abstractions`, repositórios em `Domain.Repositories` | Separação proposital: Unit of Work é um contrato de transação, não um contrato de acesso a dados — apesar de usado ao lado dos repositórios em todo serviço, representa uma responsabilidade diferente |
 
 ---
 
@@ -228,15 +229,26 @@ O PDF de instruções contém algumas definições que admitem mais de uma leitu
 
 7. **`GET /api/workshops` não é um endpoint explicitamente pedido no PDF**, mas foi adicionado porque o frontend precisa popular filtros e listagens gerais sem depender de uma ata existir. Extensão consciente do contrato, não um desvio dele.
 
-<!-- ---
+---
 
 ## Testes
 
-> A suíte de testes automatizados está em desenvolvimento. O roteiro de verificação manual de todos os endpoints e casos de erro está disponível em [`src/FastWorkshops.Api/FastWorkshops.Api.http`](src/FastWorkshops.Api/FastWorkshops.Api.http).
+Suíte de testes unitários com xUnit + NSubstitute + FluentAssertions, cobrindo as regras de negócio da camada de serviço e as invariantes da camada de domínio:
 
-Planejado (ver `tests/FastWorkshops.UnitTests`):
-- **Unitários:** regras de negócio da camada de serviço (xUnit + NSubstitute + FluentAssertions), cobrindo partição de equivalência nos filtros, valores-limite nas validações de `DataAnnotations`, idempotência do `PUT`, e ordenação alfabética pt-BR.
-- **Integração:** `WebApplicationFactory` cobrindo os endpoints ponta a ponta, incluindo os casos de erro (400/404/409). -->
+```bash
+dotnet test
+```
+
+**Cobertura atual** (`tests/FastWorkshops.UnitTests`):
+- **`Entities/AtaTests.cs`** — invariantes da entidade `Ata`: idempotência de `AdicionarColaborador` (não duplica presença) e retorno de `RemoverColaborador` quando o colaborador não está presente.
+- **`Services/AtaServiceTests.cs`** — regras de negócio de `AtaService`: rejeição de workshop inexistente, conflito ao criar ata duplicada para o mesmo workshop, identificação de colaboradores inexistentes na criação, deduplicação de ids na requisição, idempotência do `PUT` e erro ao remover colaborador não presente na ata.
+- **`Services/ColaboradorServiceTests.cs`** — ordenação alfabética pt-BR (validada com nomes acentuados) e normalização (`.Trim()`) de nome na criação.
+
+<!-- **Não coberto ainda:**
+- Testes de integração ponta a ponta (`WebApplicationFactory`), incluindo os códigos de status de erro (400/404/409) e o comportamento do middleware global de exceções.
+- Testes automatizados do `WorkshopService`. -->
+
+Roteiro de verificação manual de todos os endpoints e casos de erro, incluindo os de integração ainda não automatizados, disponível em [`src/FastWorkshops.Api/FastWorkshops.Api.http`](src/FastWorkshops.Api/FastWorkshops.Api.http).
 
 ---
 
