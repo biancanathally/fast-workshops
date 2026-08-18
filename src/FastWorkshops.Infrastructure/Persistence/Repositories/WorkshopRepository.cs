@@ -19,7 +19,6 @@ public class WorkshopRepository(AppDbContext context) : IWorkshopRepository
     {
         var query = context.Workshops
             .AsNoTracking()
-            .AsSplitQuery()
             .AsQueryable();
 
         if (!string.IsNullOrWhiteSpace(nome))
