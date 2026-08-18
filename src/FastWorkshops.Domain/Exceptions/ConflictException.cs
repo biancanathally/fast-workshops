@@ -1,3 +1,6 @@
 namespace FastWorkshops.Domain.Exceptions;
 
-public class ConflictException(string mensagem) : Exception(mensagem);
+/// <summary>
+/// Exceção lançada quando há um conflito de dados, por exemplo, ao tentar criar um registro que já existe.
+/// </summary>
+public class ConflictException(string mensagem) : DomainException(mensagem);
