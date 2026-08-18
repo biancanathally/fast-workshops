@@ -271,8 +271,6 @@ Dois exemplos de decisões revisadas e corrigidas ao longo do processo, detalhad
 
 O desenvolvimento foi acompanhado através de um board Kanban: [github.com/users/biancanathally/projects/1](https://github.com/users/biancanathally/projects/1).
 
-Para cada tarefa, o requisito de origem no enunciado, os critérios de aceitação e as decisões técnicas tomadas estão detalhados em [`docs/ISSUES-REGISTRO.md`](docs/ISSUES-REGISTRO.md).
-
 ---
 
 ## Autor
