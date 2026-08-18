@@ -14,7 +14,7 @@ public static class DbSeeder
             "Amanda Nunes", "Bianca Lima", "Bruno Martins",
             "Erick Almeida", "Iasmyn Mendes", "Lucas Lorena",
             "Maria Eduarda Mergulhão", "Mayra Schneider", "Júlio César",
-            "Priscila Régis", "Alexsandra Lima"
+            "Priscila Régis", "Alexsandra Lima", "Matheus Costa"
         }.Select(n => new Colaborador { Nome = n }).ToList();
 
         context.Colaboradores.AddRange(colaboradores);
