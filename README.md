@@ -15,7 +15,7 @@ Desenvolvido como desafio técnico para a vaga de Pesquisa em Engenharia de Soft
 - [Arquitetura](#arquitetura)
 - [Decisões técnicas](#decisões-técnicas)
 - [Ambiguidades do enunciado e como foram resolvidas](#ambiguidades-do-enunciado-e-como-foram-resolvidas)
-- [Testes](#testes)
+<!-- - [Testes](#testes) -->
 - [Uso de IA no desenvolvimento](#uso-de-ia-no-desenvolvimento)
 
 ---
