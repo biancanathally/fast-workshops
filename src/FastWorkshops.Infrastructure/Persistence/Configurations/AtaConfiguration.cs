@@ -21,5 +21,8 @@ public class AtaConfiguration : IEntityTypeConfiguration<Ata>
         builder.HasMany(a => a.Colaboradores)
                .WithMany(c => c.Atas)
                .UsingEntity(j => j.ToTable("AtaColaboradores"));
+
+        builder.Property(a => a.RowVersion)
+               .IsRowVersion();
     }
 }

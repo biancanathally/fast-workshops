@@ -17,6 +17,11 @@ public class EfUnitOfWork(AppDbContext context) : IUnitOfWork
         {
             return await context.SaveChangesAsync(ct);
         }
+        catch (DbUpdateConcurrencyException)
+        {
+            throw new ConflictException(
+                "Esta ata foi modificada por outra requisição enquanto esta era processada. Atualize e tente novamente.");
+        }
         catch (DbUpdateException ex) when (ex.InnerException is SqlException sql &&
                sql.Number is ViolacaoIndiceUnico or ViolacaoChaveUnica)
         {
