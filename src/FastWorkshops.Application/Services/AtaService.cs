@@ -49,32 +49,30 @@ public class AtaService(
     }
 
     public async Task AdicionarColaboradorAsync(
-        int ataId, int colaboradorId, CancellationToken ct = default)
+    int ataId, int colaboradorId, CancellationToken ct = default)
     {
         var ata = await atas.ObterPorIdAsync(ataId, ct)
             ?? throw new NotFoundException("Ata", ataId);
 
-        // PUT é idempotente: repetir a chamada não duplica nem falha
         if (ata.Colaboradores.Any(c => c.Id == colaboradorId))
-            return;
+            return; // idempotente — nada a persistir
 
         var colaborador = await colaboradores.ObterPorIdAsync(colaboradorId, ct)
             ?? throw new NotFoundException("Colaborador", colaboradorId);
 
-        ata.Colaboradores.Add(colaborador);
+        ata.AdicionarColaborador(colaborador);
         await uow.CommitAsync(ct);
     }
 
     public async Task RemoverColaboradorAsync(
-        int ataId, int colaboradorId, CancellationToken ct = default)
+    int ataId, int colaboradorId, CancellationToken ct = default)
     {
         var ata = await atas.ObterPorIdAsync(ataId, ct)
             ?? throw new NotFoundException("Ata", ataId);
 
-        var colaborador = ata.Colaboradores.FirstOrDefault(c => c.Id == colaboradorId)
-            ?? throw new NotFoundException("Colaborador na ata", colaboradorId);
+        if (!ata.RemoverColaborador(colaboradorId))
+            throw new NotFoundException("Colaborador na ata", colaboradorId);
 
-        ata.Colaboradores.Remove(colaborador);
         await uow.CommitAsync(ct);
     }
 
