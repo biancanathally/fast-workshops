@@ -10,24 +10,20 @@ import { listarAtas, listarColaboradores, ApiError } from './services/api';
 import './App.css';
 
 export default function App() {
-  // Estado da listagem filtrada (a tabela principal)
   const [filtros, setFiltros] = useState({ colaboradorNome: '', workshopNome: '', data: '' });
   const [atas, setAtas] = useState([]);
-  const [estado, setEstado] = useState('loading'); // 'loading' | 'ok' | 'vazio' | 'erro'
+  const [estado, setEstado] = useState('loading');
   const [mensagemErro, setMensagemErro] = useState('');
   const [ataSelecionada, setAtaSelecionada] = useState(null);
 
-  // Estado dos gráficos (visão geral, sem filtro — carregado uma única vez)
   const [colaboradoresTodos, setColaboradoresTodos] = useState([]);
   const [atasTodas, setAtasTodas] = useState([]);
   const [graficosCarregando, setGraficosCarregando] = useState(true);
 
   const filtrosDebounced = useDebounce(filtros, 300);
 
-  // Efeito 1: busca a listagem principal sempre que os filtros (debounced) mudam
   useEffect(() => {
     const controller = new AbortController();
-
     async function buscar() {
       setEstado('loading');
       try {
@@ -35,20 +31,17 @@ export default function App() {
         setAtas(resultado);
         setEstado(resultado.length === 0 ? 'vazio' : 'ok');
       } catch (err) {
-        if (err.name === 'AbortError') return; // requisição cancelada, ignore
+        if (err.name === 'AbortError') return;
         setMensagemErro(err instanceof ApiError ? err.message : 'Erro ao buscar atas.');
         setEstado('erro');
       }
     }
-
     buscar();
     return () => controller.abort();
   }, [filtrosDebounced]);
 
-  // Efeito 2: busca os dados dos gráficos uma única vez, sem filtro
   useEffect(() => {
     const controller = new AbortController();
-
     async function buscarDadosGraficos() {
       setGraficosCarregando(true);
       try {
@@ -60,39 +53,71 @@ export default function App() {
         setAtasTodas(todasAtas);
       } catch (err) {
         if (err.name === 'AbortError') return;
-        // Falha nos gráficos não deve travar a listagem principal — só loga.
         console.error('Erro ao carregar dados dos gráficos:', err);
       } finally {
         setGraficosCarregando(false);
       }
     }
-
     buscarDadosGraficos();
     return () => controller.abort();
-  }, []); // roda uma vez, ao montar
+  }, []);
 
   return (
-    <main className="app">
-      <h1>Atas dos Workshops</h1>
+    <div className="page">
+      <header className="masthead">
+        <div>
+          <p className="eyebrow">registro de presença</p>
+          <h1>FAST Workshops</h1>
+          <p className="sub">Acompanhamento de atas e presença em workshops internos.</p>
+        </div>
+        <div className="stamps">
+          <div className="stamp">
+            <span className="num">{atasTodas.length}</span>
+            <span className="lbl">workshops</span>
+          </div>
+          <div className="stamp">
+            <span className="num">{colaboradoresTodos.length}</span>
+            <span className="lbl">colaboradores</span>
+          </div>
+        </div>
+      </header>
 
       <FiltrosBar filtros={filtros} aoMudar={setFiltros} />
 
-      {estado === 'ok'
-        ? <ListaAtas atas={atas} aoClicarWorkshop={setAtaSelecionada} />
-        : <EstadoVazio tipo={estado} mensagem={mensagemErro} />}
+      <div className="board">
+        <div>
+          <p className="section-label">Atas</p>
+
+          {estado === 'ok'
+            ? <ListaAtas atas={atas} aoClicarWorkshop={setAtaSelecionada} />
+            : <EstadoVazio tipo={estado} mensagem={mensagemErro} />}
+        </div>
+
+        <div>
+          <p className="section-label">Indicadores</p>
+
+          {graficosCarregando ? (
+            <p className="state-note">Carregando indicadores…</p>
+          ) : (
+            <>
+              <GraficoBarras colaboradores={colaboradoresTodos} />
+              <GraficoPizza atas={atasTodas} />
+            </>
+          )}
+
+          <div className="hint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 16v-4M12 8h.01" />
+            </svg>
+            clique no nome do workshop na lista para ver o detalhe
+          </div>
+        </div>
+      </div>
 
       <DetalheWorkshop ata={ataSelecionada} aoFechar={() => setAtaSelecionada(null)} />
 
-      <section className="graficos">
-        {graficosCarregando ? (
-          <p className="estado estado-loading">Carregando gráficos…</p>
-        ) : (
-          <>
-            <GraficoBarras colaboradores={colaboradoresTodos} />
-            <GraficoPizza atas={atasTodas} />
-          </>
-        )}
-      </section>
-    </main>
+      <footer className="legend-note">FAST Soluções — desafio técnico fullstack</footer>
+    </div>
   );
 }

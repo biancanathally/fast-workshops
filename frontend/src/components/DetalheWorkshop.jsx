@@ -3,21 +3,27 @@ export function DetalheWorkshop({ ata, aoFechar }) {
 
   return (
     <div className="modal-overlay" onClick={aoFechar}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-fechar" onClick={aoFechar} aria-label="Fechar">×</button>
+      <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+        <div className="top">
+          <h3>{ata.workshop.nome}</h3>
+          <button className="close" onClick={aoFechar} aria-label="Fechar">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
 
-        <h2>{ata.workshop.nome}</h2>
-        <p className="modal-data">
+        <p className="meta">
           {new Date(ata.workshop.dataRealizacao).toLocaleDateString('pt-BR')}
+          &nbsp;·&nbsp;{ata.totalColaboradores} {ata.totalColaboradores === 1 ? 'presente' : 'presentes'}
         </p>
-        <p>{ata.workshop.descricao}</p>
 
-        <h3>Colaboradores presentes ({ata.totalColaboradores})</h3>
-        <ul>
+        <p className="attendee-label">Presentes</p>
+        <div className="tags">
           {ata.colaboradores.map((c) => (
-            <li key={c.id}>{c.nome}</li>
+            <span key={c.id} className="tag">{c.nome}</span>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   );
