@@ -45,7 +45,7 @@ public class ColaboradorService(IColaboradorRepository colaboradores, IUnitOfWor
 
     public async Task<ColaboradorDto> ObterPorIdAsync(int id, CancellationToken ct = default)
     {
-        var colaborador = await colaboradores.ObterPorIdAsync(id, ct)
+        var colaborador = await colaboradores.ObterPorIdSomenteLeituraAsync(id, ct)
             ?? throw new NotFoundException("Colaborador", id);
 
         return colaborador.ToDto();

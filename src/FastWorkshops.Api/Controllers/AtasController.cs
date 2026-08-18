@@ -24,19 +24,8 @@ public class AtasController(IAtaService service) : ControllerBase
         [FromQuery] string? colaboradorNome,
         CancellationToken ct)
     {
-        DateOnly? dataFiltro = null;
-
-        if (!string.IsNullOrWhiteSpace(data))
-        {
-            if (!DateOnly.TryParseExact(data, "yyyy-MM-dd",
-                    CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsed))
-            {
-                ModelState.AddModelError(nameof(data),
-                    "Formato inválido. Utilize yyyy-MM-dd (ex.: 2025-06-12).");
-                return ValidationProblem(ModelState);
-            }
-            dataFiltro = parsed;
-        }
+        if (!DateQueryParser.TentarConverter(data, ModelState, out var dataFiltro))
+            return ValidationProblem(ModelState);
 
         return Ok(await service.ListarAsync(workshopNome, dataFiltro, colaboradorNome, ct));
     }

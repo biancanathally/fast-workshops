@@ -40,26 +40,9 @@ public class WorkshopsController(IWorkshopService service) : ControllerBase
         [FromQuery] string? data,
         CancellationToken ct)
     {
-        if (!TentarConverterData(data, out var dataFiltro))
+        if (!DateQueryParser.TentarConverter(data, ModelState, out var dataFiltro))
             return ValidationProblem(ModelState);
 
         return Ok(await service.ListarAsync(nome, dataFiltro, ct));
-    }
-
-    private bool TentarConverterData(string? entrada, out DateOnly? resultado)
-    {
-        resultado = null;
-        if (string.IsNullOrWhiteSpace(entrada)) return true;
-
-        if (!DateOnly.TryParseExact(entrada, "yyyy-MM-dd",
-                CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsed))
-        {
-            ModelState.AddModelError("data",
-                "Formato inválido. Utilize yyyy-MM-dd (ex.: 2025-06-12).");
-            return false;
-        }
-
-        resultado = parsed;
-        return true;
     }
 }
