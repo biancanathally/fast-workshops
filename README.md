@@ -17,6 +17,7 @@ Desenvolvido como desafio técnico para a vaga de Pesquisa em Engenharia de Soft
 - [Ambiguidades do enunciado e como foram resolvidas](#ambiguidades-do-enunciado-e-como-foram-resolvidas)
 - [Testes](#testes)
 - [Uso de IA no desenvolvimento](#uso-de-ia-no-desenvolvimento)
+- [Gestão do projeto](#gestão-do-projeto)
 
 ---
 
@@ -263,6 +264,14 @@ Claude (Anthropic) foi utilizado como parceiro de raciocínio ao longo do desenv
 Dois exemplos de decisões revisadas e corrigidas ao longo do processo, detalhados no documento acima:
 - As implementações de repositório inicialmente ficaram fisicamente dentro do projeto `Domain`, compiladas para `Infrastructure` via `<Compile Include Link>` no `.csproj` — uma solução que compilava, mas mascarava uma violação da separação de camadas. Foi identificada em revisão e corrigida, movendo os arquivos fisicamente para `Infrastructure`.
 - A sugestão de usar AutoMapper para os DTOs foi avaliada e rejeitada em favor de mappers manuais, por controle explícito e ausência de mágica em tempo de execução desnecessária nesta escala de projeto.
+
+---
+
+## Gestão do projeto
+
+O desenvolvimento foi acompanhado através de um board Kanban: [github.com/users/biancanathally/projects/1](https://github.com/users/biancanathally/projects/1).
+
+Para cada tarefa, o requisito de origem no enunciado, os critérios de aceitação e as decisões técnicas tomadas estão detalhados em [`docs/ISSUES-REGISTRO.md`](docs/ISSUES-REGISTRO.md).
 
 ---
 
