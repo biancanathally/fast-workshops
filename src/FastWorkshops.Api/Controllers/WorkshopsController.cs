@@ -2,6 +2,7 @@ using System.Globalization;
 using FastWorkshops.Application.DTOs;
 using FastWorkshops.Application.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FastWorkshops.Api.Controllers;
 
@@ -11,9 +12,11 @@ namespace FastWorkshops.Api.Controllers;
 public class WorkshopsController(IWorkshopService service) : ControllerBase
 {
     /// <summary>Cadastra um novo workshop.</summary>
+    [Authorize]
     [HttpPost]
     [ProducesResponseType(typeof(WorkshopDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<WorkshopDto>> Criar(
         CriarWorkshopRequest request, CancellationToken ct)
     {

@@ -2,6 +2,7 @@ using System.Globalization;
 using FastWorkshops.Application.DTOs;
 using FastWorkshops.Application.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FastWorkshops.Api.Controllers;
 
@@ -39,9 +40,11 @@ public class AtasController(IAtaService service) : ControllerBase
 
     /// <summary>Cria a ata de presença de um workshop.</summary>
     /// <remarks>ColaboradorIds é opcional: a ata pode nascer vazia.</remarks>
+    [Authorize]
     [HttpPost]
     [ProducesResponseType(typeof(AtaDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     public async Task<ActionResult<AtaDto>> Criar(CriarAtaRequest request, CancellationToken ct)
@@ -51,8 +54,10 @@ public class AtasController(IAtaService service) : ControllerBase
     }
 
     /// <summary>Adiciona um colaborador à ata. Operação idempotente.</summary>
+    [Authorize]
     [HttpPut("{ataId:int}/colaboradores/{colaboradorId:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> AdicionarColaborador(
         int ataId, int colaboradorId, CancellationToken ct)
@@ -62,8 +67,10 @@ public class AtasController(IAtaService service) : ControllerBase
     }
 
     /// <summary>Remove um colaborador da ata.</summary>
+    [Authorize]
     [HttpDelete("{ataId:int}/colaboradores/{colaboradorId:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> RemoverColaborador(
         int ataId, int colaboradorId, CancellationToken ct)

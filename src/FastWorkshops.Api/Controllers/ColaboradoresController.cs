@@ -1,6 +1,7 @@
 using FastWorkshops.Application.DTOs;
 using FastWorkshops.Application.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FastWorkshops.Api.Controllers;
 
@@ -26,9 +27,11 @@ public class ColaboradoresController(IColaboradorService service) : ControllerBa
         => Ok(await service.ObterPorIdAsync(id, ct));
 
     /// <summary>Cadastra um novo colaborador.</summary>
+    [Authorize]
     [HttpPost]
     [ProducesResponseType(typeof(ColaboradorDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<ColaboradorDto>> Criar(
         CriarColaboradorRequest request, CancellationToken ct)
     {
