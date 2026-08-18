@@ -68,3 +68,8 @@ O uso foi consistentemente de **parceiro de raciocínio e revisor**: a IA propun
 ### 5. Exclusão de colaborador (`DELETE /api/colaboradores/{id}`) — não implementado, por leitura estrita do enunciado
 
 Não chegou a ser uma sugestão da IA que eu rejeitei — foi uma pergunta minha ("por que dá pra remover colaborador de uma ata mas não apagar o colaborador?") que gerou uma checagem conjunta do PDF. Confirmamos que o enunciado nunca pede esse endpoint — o único `DELETE` relacionado a colaborador é o que remove a **presença** dele numa ata, não o cadastro. Decidi não implementar, para não assumir um comportamento (cascade? bloqueio se já tiver histórico?) que o enunciado não define. Documentado como ambiguidade resolvida no README principal.
+
+## Registro das conversas
+
+- [Claude — desenvolvimento do backend, arquitetura em camadas, revisões de código e frontend](https://claude.ai/share/76f6daff-e18e-4097-a2d0-ab62d63c31cf)
+- [Gemini — apoio complementar durante o desenvolvimento](https://share.gemini.google/dy8Mm0K5ShJu)

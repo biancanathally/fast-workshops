@@ -20,6 +20,10 @@ Desenvolvido como desafio técnico para a vaga de Pesquisa em Engenharia de Soft
 
 ---
 
+Protótipo de referência visual (Figma): https://www.figma.com/design/FMKHLSdaXg06v90NVyLI9N/Fast-Workshops-Mockup---Bianca-Lima?node-id=0-1&t=Y4aTWtlgNxeQODTO-1
+
+---
+
 ## Stack
 
 **Backend**
