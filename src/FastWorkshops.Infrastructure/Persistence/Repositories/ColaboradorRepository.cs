@@ -10,6 +10,11 @@ public class ColaboradorRepository(AppDbContext context) : IColaboradorRepositor
         await context.Colaboradores
             .FirstOrDefaultAsync(c => c.Id == id, ct);
 
+    public async Task<Colaborador?> ObterPorIdSomenteLeituraAsync(int id, CancellationToken ct = default) =>
+        await context.Colaboradores
+            .AsNoTracking()
+            .FirstOrDefaultAsync(c => c.Id == id, ct);
+
     public async Task<List<Colaborador>> ObterPorIdsAsync(IEnumerable<int> ids, CancellationToken ct = default) =>
         await context.Colaboradores
             .Where(c => ids.Contains(c.Id))

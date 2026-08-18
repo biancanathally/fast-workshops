@@ -11,6 +11,11 @@ public class WorkshopRepository(AppDbContext context) : IWorkshopRepository
         await context.Workshops
             .FirstOrDefaultAsync(w => w.Id == id, ct);
 
+    public async Task<Workshop?> ObterPorIdSomenteLeituraAsync(int id, CancellationToken ct = default) =>
+        await context.Workshops
+            .AsNoTracking()
+            .FirstOrDefaultAsync(w => w.Id == id, ct);
+
     public Task<bool> ExisteAsync(int id, CancellationToken ct = default) =>
         context.Workshops.AnyAsync(w => w.Id == id, ct);
 

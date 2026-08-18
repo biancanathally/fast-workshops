@@ -27,7 +27,7 @@ public class WorkshopService(IWorkshopRepository workshops, IUnitOfWork uow) : I
 
     public async Task<WorkshopDto> ObterPorIdAsync(int id, CancellationToken ct = default)
     {
-        var workshop = await workshops.ObterPorIdAsync(id, ct)
+        var workshop = await workshops.ObterPorIdSomenteLeituraAsync(id, ct)
             ?? throw new NotFoundException("Workshop", id);
 
         return workshop.ToDto();
